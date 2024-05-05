@@ -93,7 +93,7 @@ public static int[][] c;
             }
         }
         printCitiesArray();
-        calcDPTable();
+        calcInitDPTable();
         enhancedTable();
         printTable(dptable);
         System.out.println(cities[2].isAdj("D"));
@@ -122,7 +122,7 @@ public static int[][] c;
         System.out.println(string);
         return string;
     }
-    public void calcDPTable(){
+    public void calcInitDPTable(){
         dptable = new int[cities.length][cities.length];
         for(int i =0; i<dptable.length; i++){
             for(int j=0; j<dptable[i].length; j++){
@@ -155,41 +155,10 @@ public static int[][] c;
                     if(dptable[j][i] == Integer.MAX_VALUE){
                         if (dptable[k][i] + dptable[j][k] < dptable[j][i]){
                             dptable[j][i] = dptable[k][i] + dptable[j][k];
+
                         }
                     }
 
-                }
-            }
-        }
-    }
-    public void calDP(){
-         c = new int[cities.length][cities.length];
-        int min = Integer.MAX_VALUE;
-        List<String> p = new ArrayList<>();
-        for(int i=0;i<cities.length; i++){
-            for(int j=0; j< cities.length; j++){
-                if(j == i){
-                    c[i][j] = 0;
-                }else if( i > j){
-                    if(cities[i].isAdj(cities[j].getName())){
-                        int index  = cities[i].getInd(cities[j]);
-                        int cost = cities[i].getAdjacentCities().get(index).getHotelCost() +
-                                cities[i].getAdjacentCities().get(index).getPetrolCost();
-                        c[i][j]= cost;
-                        System.out.println(cost);
-                    }
-                    else{
-                        c[i][j]= -1;
-                    }
-                }
-                else{
-                    int newVal = c[i][j-1] + c[j-1][j];
-                    if(newVal < min){
-                        min = newVal;
-                        p.add(cities[i].getName());
-                        System.out.print(min);
-                    }
-                    c[i][j] = min;
                 }
             }
         }
