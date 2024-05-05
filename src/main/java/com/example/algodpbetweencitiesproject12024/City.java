@@ -55,10 +55,17 @@ public class City {
         this.hotelCost = hotelCost;
         this.petrolCost = petrolCost;
     }
-
+    public City(String name, int hotelCost, int petrolCost) {
+        this.name = name;
+        this.hotelCost = hotelCost;
+        this.petrolCost = petrolCost;
+    }
     public City(String name, int stage ) {
         this.name =name;
         this.stage = stage;
+    }
+    public City(String name){
+        this.name =name;
     }
     public String getName() {
         return name;
@@ -109,27 +116,29 @@ public class City {
     }
     @Override
     public String toString() {
-        return "City [name=" + name + ", hotelCost=" + hotelCost + ", petrolCost" + petrolCost + "Stage: " + stage+ "]";
+        return "City [name=" + name + ", hotelCost=" + hotelCost + ", petrolCost" + petrolCost + " Stage= " + stage+ "]";
     }
     public String CityString(){
-        return "City [name=" + name + ", adjacencies: " + adjacentCities+ "]" + " Stage: " +stage;
+        return "City [name=" + name + ", adjacencies: " + adjacentCities+ "]" + "  Stage= " +stage;
 
+    }
+
+    public int getStage() {
+        return stage;
+    }
+
+    public void setStage(int stage) {
+        this.stage = stage;
     }
 
     public boolean isAdj(String city) {
-        boolean result = false;
-        List<City> newList = this.getAdjacentCities();
-        System.out.println(newList.toString());
-        for(int i=0; i<newList.size(); i++){
-            if(newList.get(i).getName() == city){
-                result =  true;
-            }
-            else{
-                result = false;
+        //List<City> newList = this.getAdjacentCities();
+        for(int i=0; i<this.adjacentCities.size(); i++){
+            if(this.adjacentCities.get(i).getName().equals(city)){
+                return true;
             }
         }
-        return result;
-       // return this.getAdjacentCities().contains(city);
+        return false;
     }
     public int getInd(City city){
         int index = -1;

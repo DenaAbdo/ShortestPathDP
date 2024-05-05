@@ -4,21 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2acd6004-c5cf-46f0-8fb7-490604c0c201" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mvnw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mvnw.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/algodpbetweencitiesproject12024/City.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/algodpbetweencitiesproject12024/HelloApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/algodpbetweencitiesproject12024/HelloController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/algodpbetweencitiesproject12024/hello-view.fxml" afterDir="false" />
+    <list default="true" id="2acd6004-c5cf-46f0-8fb7-490604c0c201" name="Changes" comment="initial commit &#10;&#10;In this version, I'm iterating through the file lines, and assiging each city in cities array seperated from the adjacent cities, so if I have &#10;Start, [A,1,1] &#10;I'm going to put the city &quot;Start&quot; , in the cities array, and the city A in the adjacents cities of&quot;Start&quot;&#10;then I'm going to the next line which has &quot;A&quot; city and just here,I'm putting &quot;A&quot; in the cities array.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/algodpbetweencitiesproject12024/City.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/algodpbetweencitiesproject12024/City.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/algodpbetweencitiesproject12024/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/algodpbetweencitiesproject12024/HelloController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,6 +33,9 @@
         <option name="mavenHome" value="Use Maven wrapper" />
       </MavenGeneralSettings>
     </option>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
@@ -79,9 +71,28 @@
       <option name="presentableId" value="Default" />
       <updated>1712492712410</updated>
     </task>
+    <task id="LOCAL؜-٠٠٠٠١" summary="initial commit &#10;&#10;In this version, I'm iterating through the file lines, and assiging each city in cities array seperated from the adjacent cities, so if I have &#10;Start, [A,1,1] &#10;I'm going to put the city &quot;Start&quot; , in the cities array, and the city A in the adjacents cities of&quot;Start&quot;&#10;then I'm going to the next line which has &quot;A&quot; city and just here,I'm putting &quot;A&quot; in the cities array.">
+      <option name="closed" value="true" />
+      <created>1714909248479</created>
+      <option name="number" value="٠٠٠٠١" />
+      <option name="presentableId" value="LOCAL؜-٠٠٠٠١" />
+      <option name="project" value="LOCAL؜" />
+      <updated>1714909248479</updated>
+    </task>
+    <task id="LOCAL؜-٠٠٠٠٢" summary="initial commit &#10;&#10;In this version, I'm iterating through the file lines, and assiging each city in cities array seperated from the adjacent cities, so if I have &#10;Start, [A,1,1] &#10;I'm going to put the city &quot;Start&quot; , in the cities array, and the city A in the adjacents cities of&quot;Start&quot;&#10;then I'm going to the next line which has &quot;A&quot; city and just here,I'm putting &quot;A&quot; in the cities array.">
+      <option name="closed" value="true" />
+      <created>1714909569570</created>
+      <option name="number" value="٠٠٠٠٢" />
+      <option name="presentableId" value="LOCAL؜-٠٠٠٠٢" />
+      <option name="project" value="LOCAL؜" />
+      <updated>1714909569570</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="initial commit &#10;&#10;In this version, I'm iterating through the file lines, and assiging each city in cities array seperated from the adjacent cities, so if I have &#10;Start, [A,1,1] &#10;I'm going to put the city &quot;Start&quot; , in the cities array, and the city A in the adjacents cities of&quot;Start&quot;&#10;then I'm going to the next line which has &quot;A&quot; city and just here,I'm putting &quot;A&quot; in the cities array." />
+    <option name="LAST_COMMIT_MESSAGE" value="initial commit &#10;&#10;In this version, I'm iterating through the file lines, and assiging each city in cities array seperated from the adjacent cities, so if I have &#10;Start, [A,1,1] &#10;I'm going to put the city &quot;Start&quot; , in the cities array, and the city A in the adjacents cities of&quot;Start&quot;&#10;then I'm going to the next line which has &quot;A&quot; city and just here,I'm putting &quot;A&quot; in the cities array." />
   </component>
 </project>

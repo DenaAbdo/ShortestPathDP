@@ -72,7 +72,7 @@ public static int[][] c;
 
                 for(int i=0; i<cities.length-1; i++){
                     String[] citiesName = input.next().trim().split("\\s*,\\s*");
-                    City city = new City(citiesName[0], stage);
+                    City city = new City(citiesName[0]);
                     cities[i] = city;
                     //System.out.println(city.getName());
                     List<City> adjacents = new ArrayList<>();
@@ -80,20 +80,22 @@ public static int[][] c;
                     String lineOfCities = input.nextLine();
                     Pattern pattern = Pattern.compile("\\[([^\\.]+)\\.([0-9]+)\\.([0-9]+)]");
                     Matcher matcher = pattern.matcher(lineOfCities);
-                    stage = stage+1;
                     while (matcher.find()) {
                         String cityName = matcher.group(1);
                         int petrolCost = Integer.parseInt(matcher.group(2));
                         int hotelCost = Integer.parseInt(matcher.group(3));
 
-                        City adj = new City(cityName,stage, petrolCost, hotelCost);
+                        City adj = new City(cityName, petrolCost, hotelCost);
                         adjacents.add(adj);
                     }
                 }
-                cities[cities.length-1] = new City(endCity, stage);
+                cities[cities.length-1] = new City(endCity);
             }
         }
         printCitiesArray();
+        calcDPTable();
+        printTable(dptable);
+        System.out.println(cities[0].isAdj("A"));
     }
     public void printCitiesArray(){
         for(int i=0; i<cities.length; i++){
@@ -122,17 +124,11 @@ public static int[][] c;
         dptable = new int[cities.length][cities.length];
         for(int i =0; i<dptable.length; i++){
             for(int j=0; j<dptable[i].length; j++){
-                dptable[i][j] = -1;
-                for(int z=0; z< cities.length; z++){
-                    for(int y=0; y<cities[z].adjacentCities.size();y++){
-                        if(cities[z].adjacentCities.get(y).getPetrolCost() > 0 || cities[z].adjacentCities.get(y).getHotelCost() > 0 ){
-                            System.out.println(cities[z].adjacentCities.get(y).getPetrolCost());
-                            dptable[i][j] = cities[z].adjacentCities.get(y).getPetrolCost() +cities[z].adjacentCities.get(y).getHotelCost(); ;
-                        }
-                        else{
-                            dptable[i][j] = 0;
-                        }
-                    }
+                if(i == j || i>j){
+                    dptable[i][j] =0;
+                }
+                else{
+                    dptable[i][j] =1;
                 }
             }
         }
