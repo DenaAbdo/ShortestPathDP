@@ -6,6 +6,8 @@ import javafx.stage.FileChooser;
 import javax.swing.JFileChooser;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -39,13 +41,9 @@ public class HelloController {
     private AnchorPane root;
     private Stage stage ;
     private Scene scene ;
-    public static int[][] DPtable ;
-public static int[][] c;
     //add using scene builder
     private Button openFileBtn;
-
-    public Label label =new Label();
-    Label label1= new Label();
+    public Label outputLabel =new Label();
 
 
     @FXML
@@ -56,11 +54,23 @@ public static int[][] c;
     public void readFile(ActionEvent actionEvent) throws FileNotFoundException {
         FileChooser fc = new FileChooser();
         fc.getExtensionFilters().add(new ExtensionFilter("text file", "*.txt"));
-        File dataFile = fc.showOpenDialog(new Stage());
+        dataFile = fc.showOpenDialog(new Stage());
 
         if (dataFile != null) {
             try (Scanner input = new Scanner(dataFile)) {
                 numberOfCities = input.nextInt();
+                try (BufferedReader reader = new BufferedReader(new FileReader(dataFile))) {
+                    int lines = 0;
+                    while (reader.readLine() != null) {
+                        lines++;
+                    }
+                    if(numberOfCities != lines-1){
+                        outputLabel.setText("The number of cities in the file is not the right number of cities");
+                    }
+                    System.out.println("Number of lines: " + lines);
+                } catch (IOException e) {
+                    System.err.println("Error reading file: " + e.getMessage());
+                }
                 System.out.println(numberOfCities );
                 String line = input.next();
                 String[] startCity = line.split(",");
@@ -91,6 +101,8 @@ public static int[][] c;
                 }
                 cities[cities.length-1] = new City(endCity);
             }
+        }else{
+            outputLabel.setText("choosing file canceled by user");
         }
         printCitiesArray();
         calcInitDPTable();
@@ -107,7 +119,12 @@ public static int[][] c;
     }
     //Display the Dynamic programming table in the screen using javafx
     public void showDPTable(ActionEvent event) {
-        label.setText(printTable(DPtable));
+        if(dataFile != null){
+            outputLabel.setText(printTable(dptable));
+            System.out.println(printTable(dptable));
+        }else{
+            outputLabel.setText(("There is no file selected, please click on choose a file button to choose a file"));
+        }
     }
     //print the Dynamic programming table logic
     public String printTable(int[][] table) {
@@ -119,7 +136,7 @@ public static int[][] c;
             }
             string = string + "\n";
         }
-        System.out.println(string);
+        //System.out.println(string);
         return string;
     }
     public void calcInitDPTable(){
