@@ -71,7 +71,7 @@ public static int[][] c;
                 System.out.println(endCity);
 
                 for(int i=0; i<cities.length-1; i++){
-                    String[] citiesName = input.next().trim().split("\\s*,\\s*");
+                    String[] citiesName = input.next().trim().split("\\s*,");
                     City city = new City(citiesName[0]);
                     cities[i] = city;
                     //System.out.println(city.getName());
@@ -94,8 +94,10 @@ public static int[][] c;
         }
         printCitiesArray();
         calcDPTable();
+        enhancedTable();
         printTable(dptable);
-        System.out.println(cities[0].isAdj("A"));
+        System.out.println(cities[2].isAdj("D"));
+        System.out.println(cities[0].getCost("A"));
     }
     public void printCitiesArray(){
         for(int i=0; i<cities.length; i++){
@@ -128,7 +130,34 @@ public static int[][] c;
                     dptable[i][j] =0;
                 }
                 else{
-                    dptable[i][j] =1;
+                    if(cities[i].isAdj(cities[j].getName())){
+                        dptable[i][j] = cities[i].getCost(cities[j].getName());
+                    }
+                    else{
+                        dptable[i][j] = Integer.MAX_VALUE;
+                    }
+                }
+            }
+        }
+    }
+    public void enhancedTable(){
+        for (int k = 0; k < cities.length; k++) {
+            // Pick all vertices as source one by one
+            for (int i = 0; i < cities.length; i++) {
+                // Pick all vertices as destination for the
+                // above picked source
+                for (int j = 0; j < cities.length; j++) {
+                    // If vertex k is on the shortest path
+                    // from i to j, then update the value of
+                    // dist[i][j]
+                    if (dptable[i][j] == Integer.MAX_VALUE || dptable[k][i] == Integer.MAX_VALUE)
+                        continue;
+                    if(dptable[j][i] == Integer.MAX_VALUE){
+                        if (dptable[k][i] + dptable[j][k] < dptable[j][i]){
+                            dptable[j][i] = dptable[k][i] + dptable[j][k];
+                        }
+                    }
+
                 }
             }
         }

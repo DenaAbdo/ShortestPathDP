@@ -132,7 +132,7 @@ public class City {
     }
 
     public boolean isAdj(String city) {
-        //List<City> newList = this.getAdjacentCities();
+        List<City> newList = this.getAdjacentCities();
         for(int i=0; i<this.adjacentCities.size(); i++){
             if(this.adjacentCities.get(i).getName().equals(city)){
                 return true;
@@ -140,6 +140,16 @@ public class City {
         }
         return false;
     }
+    public int getCost(String adjName){
+        for(City adj : this.adjacentCities){
+            if(adj.getName().equals(adjName)){
+                return adj.getPetrolCost() + adj.getHotelCost();
+            }
+        }
+        //this means they are not adjacents
+        return -1;
+    }
+    //Maybe delete this?
     public int getInd(City city){
         int index = -1;
         for(int i =0; i<this.adjacentCities.size(); i++){
