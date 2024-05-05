@@ -14,6 +14,7 @@
       <children>
           <Button onAction="#readFile" prefHeight="46.0" prefWidth="108.0" text="Choose a file" />
          <Button fx:id="showDPBtn" onAction="#showDPTable" prefHeight="46.0" prefWidth="158.0" text="Show Dynamic Table" textAlignment="CENTER" />
+         <Button fx:id="showPath" layoutX="118.0" layoutY="10.0" onAction="#showPathBtn" prefHeight="46.0" prefWidth="158.0" text="Show Path" textAlignment="CENTER" />
       </children>
    </HBox>
 </VBox>

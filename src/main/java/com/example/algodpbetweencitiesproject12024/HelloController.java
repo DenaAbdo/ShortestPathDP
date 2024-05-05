@@ -8,9 +8,7 @@ import javax.swing.JFileChooser;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -36,6 +34,8 @@ public class HelloController {
     int numberOfCities;
     City[] cities ;
     int[][] dptable;
+    Set<String> path = new LinkedHashSet<>();
+
     @FXML
     private Label welcomeText;
     private AnchorPane root;
@@ -47,9 +47,6 @@ public class HelloController {
 
 
     @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
-    }
    //Read from file and store in a data structure:
     public void readFile(ActionEvent actionEvent) throws FileNotFoundException {
         FileChooser fc = new FileChooser();
@@ -59,6 +56,7 @@ public class HelloController {
         if (dataFile != null) {
             try (Scanner input = new Scanner(dataFile)) {
                 numberOfCities = input.nextInt();
+                //Check if the number of cities in the first line of the file is the same number of cites in the file
                 try (BufferedReader reader = new BufferedReader(new FileReader(dataFile))) {
                     int lines = 0;
                     while (reader.readLine() != null) {
@@ -120,17 +118,25 @@ public class HelloController {
     //Display the Dynamic programming table in the screen using javafx
     public void showDPTable(ActionEvent event) {
         if(dataFile != null){
-            outputLabel.setText(printTable(dptable));
+            String newStr = "";
+            for(int i=0; i<cities.length; i++){
+                newStr = newStr + cities[i].getName() + "\t";
+            }
+            outputLabel.setText(newStr + "\n" +printTable(dptable));
             System.out.println(printTable(dptable));
         }else{
             outputLabel.setText(("There is no file selected, please click on choose a file button to choose a file"));
         }
+    }
+    public void showPathBtn(ActionEvent event){
+        outputLabel.setText(path.toString());
     }
     //print the Dynamic programming table logic
     public String printTable(int[][] table) {
         String string = "";
 
         for(int i =0; i<table.length; i++) {
+            string = string + cities[i].getName() + "\t";
             for(int j=0; j<table[i].length; j++) {
                 string =  string + table[i][j] + "\t";
             }
@@ -158,6 +164,7 @@ public class HelloController {
         }
     }
     public void enhancedTable(){
+        path.add(cities[0].getName());
         for (int k = 0; k < cities.length; k++) {
             // Pick all vertices as source one by one
             for (int i = 0; i < cities.length; i++) {
@@ -172,13 +179,13 @@ public class HelloController {
                     if(dptable[j][i] == Integer.MAX_VALUE){
                         if (dptable[k][i] + dptable[j][k] < dptable[j][i]){
                             dptable[j][i] = dptable[k][i] + dptable[j][k];
-
+                            path.add(cities[k].getName());
                         }
                     }
-
                 }
             }
         }
+        path.add(cities[cities.length-1].getName());
     }
     //Switch to the next screen after reading the file data and storing them
     public void switchToGameScene(ActionEvent event) {
@@ -194,15 +201,4 @@ public class HelloController {
 
         stage.show();
     }
-public boolean checkAdjMethod(City city1, City city2){
-        if( city1.isAdj(city2.getName())){
-
-            System.out.println("the cities are adj" + city1 + "\t" + city2);
-            return true;
-        }
-        else{
-            System.out.println("not adjs" + city1.CityString() + "\t" + city2.CityString());
-            return false;
-        }
-}
 }
