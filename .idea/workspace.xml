@@ -5,11 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2acd6004-c5cf-46f0-8fb7-490604c0c201" name="Changes" comment="initial commit &#10;&#10;In this version, I'm iterating through the file lines, and assiging each city in cities array seperated from the adjacent cities, so if I have &#10;Start, [A,1,1] &#10;I'm going to put the city &quot;Start&quot; , in the cities array, and the city A in the adjacents cities of&quot;Start&quot;&#10;then I'm going to the next line which has &quot;A&quot; city and just here,I'm putting &quot;A&quot; in the cities array.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/algodpbetweencitiesproject12024/CityNodeUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/algodpbetweencitiesproject12024/City.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/algodpbetweencitiesproject12024/City.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/algodpbetweencitiesproject12024/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/algodpbetweencitiesproject12024/HelloApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/algodpbetweencitiesproject12024/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/algodpbetweencitiesproject12024/HelloController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/algodpbetweencitiesproject12024/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/algodpbetweencitiesproject12024/hello-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

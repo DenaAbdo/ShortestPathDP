@@ -38,7 +38,7 @@ public class HelloController {
     City[] cities;
     int[][] dptable;
     Set<String> path = new LinkedHashSet<>();
-
+    City startCity,endCity;
     @FXML
     private Label welcomeText;
     @FXML
@@ -70,7 +70,7 @@ public class HelloController {
                     while (reader.readLine() != null) {
                         lines++;
                     }
-                    if (numberOfCities != lines - 1) {
+                    if (numberOfCities != lines -2) {
                         outputLabel.setText("The number of cities in the file is not the right number of cities");
                     }
                     System.out.println("Number of lines: " + lines);
@@ -79,11 +79,14 @@ public class HelloController {
                 }
                 System.out.println(numberOfCities);
                 String line = input.next();
-                String[] startCity = line.split(",");
+                String[] startCityName = line.split(",");
                 cities = new City[numberOfCities];
                 int stage = 0;
-                System.out.println(startCity[0]);
-                String endCity = input.next();
+                System.out.println(startCityName[0]);
+                String endCityName = input.next();
+                startCity = new City(startCityName[0]);
+                endCity = new City(endCityName);
+
                 System.out.println(endCity);
 
                 for (int i = 0; i < cities.length - 1; i++) {
@@ -105,7 +108,7 @@ public class HelloController {
                         adjacents.add(adj);
                     }
                 }
-                cities[cities.length - 1] = new City(endCity);
+                cities[cities.length - 1] = new City(input.next());
             }
         } else {
             outputLabel.setText("choosing file canceled by user");
@@ -114,6 +117,7 @@ public class HelloController {
         calcInitDPTable();
         enhancedTable();
         printTable(dptable);
+        System.out.println(path.toString());
         System.out.println(cities[2].isAdj("D"));
         System.out.println(cities[0].getCost("A"));
     }
@@ -176,7 +180,8 @@ public class HelloController {
     }
 
     public void enhancedTable() {
-        path.add(cities[0].getName());
+        path.add(startCity.getName());
+        outerLoop:
         for (int k = 0; k < cities.length; k++) {
             // Pick all vertices as source one by one
             for (int i = 0; i < cities.length; i++) {
@@ -186,34 +191,28 @@ public class HelloController {
                     // If vertex k is on the shortest path
                     // from i to j, then update the value of
                     // dist[i][j]
-                    if (dptable[i][j] == Integer.MAX_VALUE || dptable[k][i] == Integer.MAX_VALUE)
+                    if (dptable[i][j] == Integer.MAX_VALUE || dptable[k][i] == Integer.MAX_VALUE )
                         continue;
                     if (dptable[j][i] == Integer.MAX_VALUE) {
                         if (dptable[k][i] + dptable[j][k] < dptable[j][i]) {
                             dptable[j][i] = dptable[k][i] + dptable[j][k];
-                            path.add(cities[k].getName());
+                            if(cities[k].getName().equals(endCity.getName())){
+                                System.out.println(cities[k]);
+                                System.out.println("true");
+                                break outerLoop;
+                            }
+                            else{
+                                System.out.println(cities[k]);
+                                path.add(cities[k].getName());
+                            }
+
                         }
                     }
                 }
             }
         }
-        path.add(cities[cities.length - 1].getName());
+        path.add(endCity.getName());
     }
-
-    //Switch to the next screen after reading the file data and storing them
-    /*public void getScene(ActionEvent event) {
-        try {
-            root = FXMLLoader.load(getClass().getResource("hello-view.fxml"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.setTitle("Result");
-
-        stage.show();
-    }*/
 
     public void showPathBtn(ActionEvent event) {
         double x = 0;
@@ -244,7 +243,6 @@ public class HelloController {
             }
         }
         CityNodeUI city = new CityNodeUI(x,y,linkedList.get(linkedList.size()-1));
-        //String nextCityName= linkedList.get(linkedList.size()-1);
         pathHBox.getChildren().addAll(city.getPointGroup());
         pathHBox.setPrefHeight(100);
         pathHBox.setPrefWidth(800);
