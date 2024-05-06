@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2acd6004-c5cf-46f0-8fb7-490604c0c201" name="Changes" comment="initial commit &#10;&#10;In this version, I'm iterating through the file lines, and assiging each city in cities array seperated from the adjacent cities, so if I have &#10;Start, [A,1,1] &#10;I'm going to put the city &quot;Start&quot; , in the cities array, and the city A in the adjacents cities of&quot;Start&quot;&#10;then I'm going to the next line which has &quot;A&quot; city and just here,I'm putting &quot;A&quot; in the cities array.">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/algodpbetweencitiesproject12024/CityNodeUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/algodpbetweencitiesproject12024/City.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/algodpbetweencitiesproject12024/City.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/algodpbetweencitiesproject12024/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/algodpbetweencitiesproject12024/HelloController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/algodpbetweencitiesproject12024/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/algodpbetweencitiesproject12024/hello-view.fxml" afterDir="false" />
     </list>
@@ -17,26 +19,26 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="FxmlFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "DenaAbdo"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;DenaAbdo&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/DenaAbdo/ShortestPathDP.git",
-    "accountId": "689f9278-3641-4da3-aa8d-3bc7ecf9b759"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/DenaAbdo/ShortestPathDP.git&quot;,
+    &quot;accountId&quot;: &quot;689f9278-3641-4da3-aa8d-3bc7ecf9b759&quot;
   }
-}]]></component>
+}</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/main/java/com/example/algodpbetweencitiesproject12024/HelloApplication.java" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -61,16 +63,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Application.HelloApplication.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\owner\Desktop\Algo-DP-betweenCities-Project1-2024\src\main\resources\com\example\algodpbetweencitiesproject12024" />

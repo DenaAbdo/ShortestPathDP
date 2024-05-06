@@ -15,35 +15,8 @@ public class City {
     private int petrolCost;
     List<City> adjacentCities = new ArrayList<City>();
     private int stage ;
-    private Circle circle;
-    private Label label;
-    private double x;
-    private double y;
-    private Group pointGroup;
 
-    public City(double x, double y, String name) {
-        this.x = x;
-        this.y = y;
 
-        //create the shape of circle
-        circle = new Circle(10);
-        circle.setLayoutX(x);
-        circle.setLayoutY(y);
-        circle.setFill(Color.GRAY);
-
-        // Create a label for the name
-        label = new Label(String.valueOf(name));
-        label.setLayoutX(x-7);
-        label.setLayoutY(y - 10);
-
-        // Create a Group to encapsulate both the circle and label
-        Group pointGroup = new Group(circle, label);
-
-        // Set the position of the group
-        pointGroup.setLayoutX(x);
-        pointGroup.setLayoutY(y);
-        this.pointGroup.setUserData(this);
-    }
     public City(String name, List<City> cities){
         this.name = name;
         this.adjacentCities = cities;
@@ -88,22 +61,6 @@ public class City {
         this.petrolCost = petrolCost;
     }
 
-    public double getX() { return x;}
-
-    public void setX(double x) {
-        this.x = x;
-    }
-
-    public double getY() {
-        return y;
-    }
-
-    public void setY(double y) {
-        this.y = y;
-    }
-    public Circle getCircle() {
-        return this.circle;
-    }
     public List<City> getAdjacentCities() {
         return adjacentCities;
     }
@@ -159,4 +116,5 @@ public class City {
         }
         return index;
     }
+
 }
