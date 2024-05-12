@@ -14,7 +14,7 @@ import java.util.List;
             public void start(Stage stage) throws IOException {
                 FXMLLoader fxmlLoader = new FXMLLoader(com.example.algodpbetweencitiesproject12024.HelloApplication.class.getResource("hello-view.fxml"));
                 Scene scene = new Scene(fxmlLoader.load());
-                stage.setTitle("Shortest path between cities|DP!");
+                stage.setTitle("Shortest path between cities | DP!");
                 stage.setScene(scene);
         stage.show();
     }

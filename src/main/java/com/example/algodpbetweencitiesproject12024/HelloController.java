@@ -39,6 +39,7 @@ public class HelloController {
     int[][] dptable;
     Set<String> path = new LinkedHashSet<>();
     City startCity,endCity;
+    static int finalCost=0;
     @FXML
     private Label welcomeText;
     @FXML
@@ -51,11 +52,12 @@ public class HelloController {
     //add using scene builder
     private Button openFileBtn;
     public Label outputLabel = new Label();
-
+    public Label costLabel = new Label();
 
     @FXML
     //Read from file and store in a data structure:
     public void readFile(ActionEvent actionEvent) throws FileNotFoundException {
+        dataFile = null;
         FileChooser fc = new FileChooser();
         fc.getExtensionFilters().add(new ExtensionFilter("text file", "*.txt"));
         dataFile = fc.showOpenDialog(new Stage());
@@ -116,10 +118,10 @@ public class HelloController {
         printCitiesArray();
         calcInitDPTable();
         enhancedTable();
-        printTable(dptable);
+        /*printTable(dptable);
         System.out.println(path.toString());
         System.out.println(cities[2].isAdj("D"));
-        System.out.println(cities[0].getCost("A"));
+        System.out.println(cities[0].getCost("A"));*/
     }
 
     public void printCitiesArray() {
@@ -142,11 +144,6 @@ public class HelloController {
             outputLabel.setText(("There is no file selected, please click on choose a file button to choose a file"));
         }
     }
-
-    /*public void showPathBtn(ActionEvent event) {
-        outputLabel.setText(path.toString());
-    }*/
-
     //print the Dynamic programming table logic
     public String printTable(int[][] table) {
         String string = "";
@@ -180,46 +177,44 @@ public class HelloController {
     }
 
     public void enhancedTable() {
-        path.add(startCity.getName());
-        outerLoop:
-        for (int k = 0; k < cities.length; k++) {
-            // Pick all vertices as source one by one
-            for (int i = 0; i < cities.length; i++) {
-                // Pick all vertices as destination for the
-                // above picked source
-                for (int j = 0; j < cities.length; j++) {
-                    // If vertex k is on the shortest path
-                    // from i to j, then update the value of
-                    // dist[i][j]
-                    if (dptable[i][j] == Integer.MAX_VALUE || dptable[k][i] == Integer.MAX_VALUE )
-                        continue;
-                    if (dptable[j][i] == Integer.MAX_VALUE) {
-                        if (dptable[k][i] + dptable[j][k] < dptable[j][i]) {
-                            dptable[j][i] = dptable[k][i] + dptable[j][k];
-                            if(cities[k].getName().equals(endCity.getName())){
-                                System.out.println(cities[k]);
-                                System.out.println("true");
-                                break outerLoop;
+        if(startCity.getName().equals(endCity.getName())){
+            costLabel.setText("The source is the same as the destination city");
+        }else{//assign startCity index to z
+            int z = searchCityIndex(startCity.getName());
+            path.add(startCity.getName());
+            outerLoop:
+            for (int k = z; k < cities.length; k++) {
+                for (int i = z; i < cities.length; i++) {
+                    for (int j = z; j < cities.length; j++) {
+                        if (dptable[i][j] == Integer.MAX_VALUE || dptable[k][i] == Integer.MAX_VALUE )
+                            continue;
+                        if (dptable[j][i] == Integer.MAX_VALUE) {
+                            if (dptable[k][i] + dptable[j][k] < dptable[j][i]) {
+                                dptable[j][i] = dptable[k][i] + dptable[j][k];
+                                if(cities[k].getName().equals(endCity.getName())){
+                                    System.out.println("true");
+                                    System.out.println(dptable[i][j]);
+                                    break outerLoop;
+                                }
+                                else{
+                                    path.add(cities[k].getName());
+                                }
                             }
-                            else{
-                                System.out.println(cities[k]);
-                                path.add(cities[k].getName());
-                            }
-
                         }
                     }
                 }
             }
+            path.add(endCity.getName());
         }
-        path.add(endCity.getName());
     }
-
     public void showPathBtn(ActionEvent event) {
         double x = 0;
         double y =0;
         LinkedList<String> linkedList = new LinkedList<>(path);
         pathHBox.setSpacing(10);
         pathHBox.setStyle(" text-color: black");
+        finalCost = 0;
+        pathHBox.getChildren().clear();
         for (int i=0; i<linkedList.size()-1;i++) {
             CityNodeUI city = new CityNodeUI(x,y,linkedList.get(i));
             pathHBox.getChildren().addAll(city.getPointGroup());
@@ -230,13 +225,11 @@ public class HelloController {
                 if(linkedList.get(i+1).equals(adj.getName())){
                     String nextCityName= linkedList.get(i+1);
                     int cost = currCity.getCost(nextCityName);
+                    finalCost = finalCost + cost;
                     Line line = new Line(0,0,20,0);
                     Label costLabel = new Label(String.valueOf(cost));
                     costLabel.setText(String.valueOf(cost));
                     costLabel.setMinWidth(50);
-                   /* StackPane container = new StackPane(); // Create a container for label and line
-                    container.getChildren().addAll(costLabel, new javafx.scene.shape.Line(0, 0, 20, 0)); // Add label and line
-                    pathHBox.getChildren().add(container);*/
                     pathHBox.getChildren().add(line);
                     pathHBox.getChildren().add(costLabel);
                 }
@@ -246,6 +239,7 @@ public class HelloController {
         pathHBox.getChildren().addAll(city.getPointGroup());
         pathHBox.setPrefHeight(100);
         pathHBox.setPrefWidth(800);
+        costLabel.setText("Cost: " + finalCost);
     }
     public City getCityByName(String name){
         for(int i=0; i<cities.length; i++){
@@ -254,5 +248,14 @@ public class HelloController {
             }
         }
         return null;
+    }
+    public int searchCityIndex(String cityName){
+        for(int i=0; i<cities.length; i++){
+            if(cities[i].getName().equals(cityName)){
+                return i;
+            }
+        }
+        //if not found
+        return -1;
     }
 }
