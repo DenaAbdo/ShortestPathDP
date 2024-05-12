@@ -88,12 +88,13 @@ public class HelloController {
                 String endCityName = input.next();
                 startCity = new City(startCityName[0]);
                 endCity = new City(endCityName);
-
                 System.out.println(endCity);
+                int nextStageCount =0 ;//= i + city.getAdjacentCities().size();
 
                 for (int i = 0; i < cities.length - 1; i++) {
+
                     String[] citiesName = input.next().trim().split("\\s*,");
-                    City city = new City(citiesName[0]);
+                    City city = new City(citiesName[0], stage);
                     cities[i] = city;
                     //System.out.println(city.getName());
                     List<City> adjacents = new ArrayList<>();
@@ -106,11 +107,15 @@ public class HelloController {
                         int petrolCost = Integer.parseInt(matcher.group(2));
                         int hotelCost = Integer.parseInt(matcher.group(3));
 
-                        City adj = new City(cityName, petrolCost, hotelCost);
+                        City adj = new City(cityName, stage +1,petrolCost, hotelCost);
                         adjacents.add(adj);
                     }
+                    if(nextStageCount <= i){
+                        nextStageCount = i + city.getAdjacentCities().size();
+                        stage = stage+1;
+                    }
                 }
-                cities[cities.length - 1] = new City(input.next());
+                cities[cities.length - 1] = new City(input.next(), stage);
             }
         } else {
             outputLabel.setText("choosing file canceled by user");
@@ -168,7 +173,11 @@ public class HelloController {
                 } else {
                     if (cities[i].isAdj(cities[j].getName())) {
                         dptable[i][j] = cities[i].getCost(cities[j].getName());
-                    } else {
+                    }
+                    else if((cities[i].getStage() == cities[j].getStage()) || (cities[i].getStage()-1 == cities[j].getStage()) || cities[i].getStage()+1 == cities[j].getStage()){
+                        dptable[i][j] = 0;
+                    }
+                    else {
                         dptable[i][j] = Integer.MAX_VALUE;
                     }
                 }
